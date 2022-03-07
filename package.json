@@ -31,5 +31,12 @@
     "helmet": "^5.0.2",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "!src/**/*.test.js",
+      "!src/index.js",
+      "!src/server/serverUp.js"
+    ]
   }
 }
