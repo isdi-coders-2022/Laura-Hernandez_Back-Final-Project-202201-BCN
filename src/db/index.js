@@ -1,5 +1,5 @@
 require("dotenv").config();
-const debug = require("debug")("skybuz:dbConnection");
+const debug = require("debug")("skybuzz:dbConnection");
 const chalk = require("chalk");
 const mongoose = require("mongoose");
 
