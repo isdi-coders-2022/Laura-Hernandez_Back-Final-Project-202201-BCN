@@ -3,7 +3,7 @@ const debug = require("debug")("skybuzz:root");
 const app = require("./server/index");
 const serverUp = require("./server/serverUp");
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 6000;
 
 (async () => {
   try {
