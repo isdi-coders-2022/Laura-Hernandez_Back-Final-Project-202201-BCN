@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const helmet = require("helmet");
 const { notFoundError, generalError } = require("../middlewares/errors");
+const buzzsRouter = require("./routers/buzzsRouter");
 
 const app = express();
 
