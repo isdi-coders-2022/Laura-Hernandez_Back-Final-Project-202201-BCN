@@ -1,5 +1,5 @@
 require("dotenv").config();
-const chalk = require("chalk");
+const Buzz = require("../../db/models/Buzz");
 
 const getAllBuzzs = async (req, res) => {
   const buzzs = await Buzz.find();
