@@ -53,7 +53,28 @@ describe("Given a generalError function", () => {
 
       const error = {
         message: "error",
-        code: null,
+      };
+
+      const mockedRes = mockRes();
+
+      generalError(error, null, mockedRes, null);
+
+      expect(mockedRes.json).toHaveBeenCalled();
+    });
+  });
+
+  describe("When it receives an error with status 500 and a response", () => {
+    test("Then it should call method json", () => {
+      const mockRes = () => {
+        const res = {};
+        res.status = jest.fn().mockReturnValue(res);
+        res.json = jest.fn().mockReturnValue(res);
+        return res;
+      };
+
+      const error = {
+        message: "error",
+        code: 500,
       };
 
       const mockedRes = mockRes();
