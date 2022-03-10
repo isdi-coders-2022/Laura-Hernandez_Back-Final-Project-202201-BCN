@@ -1,9 +1,10 @@
 require("dotenv").config();
 const express = require("express");
-const { getAllBuzzs } = require("../controllers/buzzsControllers");
+const { getAllBuzzs, deleteBuzz } = require("../controllers/buzzsControllers");
 
 const router = express.Router();
 
 router.get("/", getAllBuzzs);
+router.delete("/:id", deleteBuzz);
 
 module.exports = router;
