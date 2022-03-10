@@ -6,4 +6,21 @@ const getAllBuzzs = async (req, res) => {
   res.json({ buzzs });
 };
 
-module.exports = { getAllBuzzs };
+const deleteBuzz = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const buzz = await Buzz.findByIdAndRemove(id);
+    if (buzz) {
+      res.json({});
+    } else {
+      const error = new Error("Buzz not found");
+      error.code = 404;
+      next(error);
+    }
+  } catch (error) {
+    error.code = 400;
+    next(error);
+  }
+};
+
+module.exports = { getAllBuzzs, deleteBuzz };
