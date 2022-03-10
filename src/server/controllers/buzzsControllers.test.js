@@ -65,4 +65,23 @@ describe("Given an deleteBuzz controller", () => {
       expect(next).not.toHaveBeenCalled();
     });
   });
+
+  describe("When it receives an invalid id to delete", () => {
+    test("Then it should call next with an error", async () => {
+      const req = {
+        params: {
+          id: "gehwwefw",
+        },
+      };
+
+      const next = jest.fn();
+      const error = new Error("Id not valid");
+
+      Buzz.findByIdAndRemove = jest.fn().mockRejectedValue(error);
+
+      await deleteBuzz(req, null, next);
+
+      expect(next).toHaveBeenCalledWith(error);
+    });
+  });
 });
