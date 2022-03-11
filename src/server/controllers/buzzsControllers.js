@@ -1,4 +1,6 @@
 require("dotenv").config();
+const debug = require("debug")("skybuzz:server:buzzControllers");
+const chalk = require("chalk");
 const Buzz = require("../../db/models/Buzz");
 
 const getAllBuzzs = async (req, res) => {
@@ -23,4 +25,22 @@ const deleteBuzz = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllBuzzs, deleteBuzz };
+const addBuzz = async (req, res, next) => {
+  const { text, author, category, date, likes, comments } = req.body;
+  try {
+    await Buzz.create({
+      text,
+      author,
+      category,
+      date,
+      likes,
+      comments,
+    });
+    debug(chalk.greenBright(`Buzz published correctly`));
+    return res.status(201).json({ message: `Buzz published correctly` });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+module.exports = { getAllBuzzs, deleteBuzz, addBuzz };
