@@ -64,3 +64,17 @@ describe("Given a /buzzs/:id endpoint", () => {
     });
   });
 });
+
+describe("Given a /buzzs/new endpoint", () => {
+  describe("When it receives a POST request with the buzz data", () => {
+    test("Then it should respond with a 201 status code", async () => {
+      const dataBuzz = {
+        category: "Pulp Fiction",
+        author: "Mr.Wolf",
+        text: "That's thirty minutes away. I'll be there in ten.",
+      };
+
+      await request(app).post("/buzzs/new ").send(dataBuzz).expect(201);
+    });
+  });
+});
