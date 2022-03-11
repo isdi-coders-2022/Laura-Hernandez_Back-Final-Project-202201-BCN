@@ -13,15 +13,22 @@ beforeAll(async () => {
   const connectionString = mongoServer.getUri();
 
   await connectToDataBase(connectionString);
+});
 
+beforeEach(async () => {
   await Buzz.create({
     comments: [],
     author: "Madonna",
     text: "Madonna is writting a message",
   });
+  await Buzz.create({
+    comments: [],
+    author: "Janis",
+    text: "Janis is writting a message",
+  });
 });
 
-afterAll(async () => {
+afterEach(async () => {
   await Buzz.deleteMany({});
 });
 
@@ -36,6 +43,16 @@ describe("Given an endpoint /buzzs/", () => {
       const { body } = await request(app).get("/buzzs/").expect(200);
 
       expect(body).toHaveProperty("buzzs");
+    });
+  });
+});
+
+describe("Given a /buzzs/:id endpoint", () => {
+  describe("When it receives a DELETE request with a buzz id", () => {
+    test("Then it should respond with a 200 status code", async () => {
+      const { body } = await request(app).get("/buzzs/ ").expect(200);
+
+      await request(app).delete(`/buzzs/${body.buzzs[0].id}`).expect(200);
     });
   });
 });
