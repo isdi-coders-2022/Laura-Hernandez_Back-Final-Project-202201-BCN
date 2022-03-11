@@ -11,10 +11,10 @@ describe("Given a notFoundError function", () => {
       };
 
       const mockedRes = mockRes();
-
       notFoundError(null, mockedRes);
 
       expect(mockedRes.json).toHaveBeenCalled();
+      expect(mockedRes.status).toHaveBeenCalledWith(404);
     });
   });
 });
