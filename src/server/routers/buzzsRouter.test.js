@@ -55,4 +55,12 @@ describe("Given a /buzzs/:id endpoint", () => {
       await request(app).delete(`/buzzs/${body.buzzs[0].id}`).expect(200);
     });
   });
+
+  describe("When it receives a DELETE request with a nonexistent id", () => {
+    test("Then it should respond with a 400 status code", async () => {
+      const noId = "12345";
+
+      await request(app).delete(`/buzzs/${noId}`).expect(400);
+    });
+  });
 });
