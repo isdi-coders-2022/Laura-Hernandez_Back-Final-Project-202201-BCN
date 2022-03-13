@@ -13,7 +13,7 @@ describe("Given an getAllBuzzs controller", () => {
 
       const buzzs = [
         {
-          category: "General",
+          topic: "General",
           likes: 0,
           comments: [],
           author: "Madonna",
@@ -49,7 +49,7 @@ describe("Given an deleteBuzz controller", () => {
       const next = jest.fn();
       const buzzToDelete = {
         id: "12345",
-        category: "General",
+        topic: "General",
         likes: 0,
         comments: [],
         author: "Madonna",

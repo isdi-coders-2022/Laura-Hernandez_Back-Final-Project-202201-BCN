@@ -26,12 +26,12 @@ const deleteBuzz = async (req, res, next) => {
 };
 
 const addBuzz = async (req, res, next) => {
-  const { text, author, category, date, likes, comments } = req.body;
+  const { text, author, topic, date, likes, comments } = req.body;
   try {
     await Buzz.create({
       text,
       author,
-      category,
+      topic,
       date,
       likes,
       comments,
