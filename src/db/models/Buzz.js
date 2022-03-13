@@ -11,7 +11,7 @@ const BuzzSchema = new Schema({
     min: 5,
     max: 200,
   },
-  category: {
+  topic: {
     type: String,
     default: "General",
   },
