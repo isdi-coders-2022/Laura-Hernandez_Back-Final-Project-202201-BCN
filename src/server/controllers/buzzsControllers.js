@@ -26,18 +26,23 @@ const deleteBuzz = async (req, res, next) => {
 };
 
 const addBuzz = async (req, res, next) => {
-  const { text, author, topic, date, likes, comments } = req.body;
+  const { text, author, topic, date, comments } = req.body;
   try {
     await Buzz.create({
       text,
       author,
       topic,
       date,
-      likes,
       comments,
     });
     debug(chalk.greenBright(`Buzz published correctly`));
-    return res.status(201).json({ message: `Buzz published correctly` });
+    return res.status(201).json({
+      text,
+      author,
+      topic,
+      date,
+      comments,
+    });
   } catch (error) {
     return next(error);
   }
