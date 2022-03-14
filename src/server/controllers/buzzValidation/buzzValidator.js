@@ -1,4 +1,4 @@
-const Joi = require("joi");
+const { Joi } = require("express-validation");
 
 const validationBuzzJoi = Joi.object({
   author: Joi.string().alphanum().min(3).max(15).required(),
@@ -9,4 +9,4 @@ const validationBuzzJoi = Joi.object({
   comments: Joi.array().items(Joi.string()).default([]),
 });
 
-export default validationBuzzJoi;
+module.exports = validationBuzzJoi;

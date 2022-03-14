@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const buzzValidation = require("../../middlewares/buzzValidation");
 const {
   getAllBuzzs,
   deleteBuzz,
@@ -10,6 +11,6 @@ const router = express.Router();
 
 router.get("/", getAllBuzzs);
 router.delete("/:id", deleteBuzz);
-router.post("/new", addBuzz);
+router.post("/new", buzzValidation, addBuzz);
 
 module.exports = router;

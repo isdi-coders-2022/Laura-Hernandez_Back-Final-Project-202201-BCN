@@ -12,7 +12,13 @@ const generalError = (err, req, res, next) => {
     .json({ error: err.message || "General server error" });
 };
 
+const errorFunction = (errorBit, msg, data) => {
+  if (errorBit) return { is_error: errorBit, message: msg };
+  return { is_error: errorBit, message: msg, data };
+};
+
 module.exports = {
   notFoundError,
   generalError,
+  errorFunction,
 };
