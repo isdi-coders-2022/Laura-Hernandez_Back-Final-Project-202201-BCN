@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.get("/", getAllBuzzs);
 router.delete("/:id", deleteBuzz);
-router.patch(":id/like", incrementLike);
+router.patch("/:id/like", incrementLike);
 router.post("/new", validate(validationBuzzJoi), addBuzz);
 
 module.exports = router;
