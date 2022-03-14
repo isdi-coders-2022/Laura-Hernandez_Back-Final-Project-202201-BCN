@@ -13,7 +13,7 @@ const BuzzSchema = new Schema({
   },
   topic: {
     type: String,
-    default: "general",
+    required: true,
   },
   date: {
     type: Date,
