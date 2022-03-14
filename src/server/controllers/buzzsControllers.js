@@ -14,6 +14,7 @@ const deleteBuzz = async (req, res, next) => {
     const buzz = await Buzz.findByIdAndRemove(id);
     if (buzz) {
       res.json({});
+      debug(chalk.greenBright(`Buzz deleted correctly`));
     } else {
       const error = new Error("Buzz not found");
       error.code = 404;
