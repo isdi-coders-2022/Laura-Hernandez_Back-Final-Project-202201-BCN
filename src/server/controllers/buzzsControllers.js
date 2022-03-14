@@ -1,5 +1,5 @@
 require("dotenv").config();
-const debug = require("debug")("skybuzz:server:buzzControllers");
+const debug = require("debug")("skybuzz:server:buzzsControllers");
 const chalk = require("chalk");
 const Buzz = require("../../db/models/Buzz");
 
