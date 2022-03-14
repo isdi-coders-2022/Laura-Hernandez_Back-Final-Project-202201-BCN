@@ -3,7 +3,7 @@ const debug = require("debug")("skybuzz:server:buzzControllers");
 const chalk = require("chalk");
 const Buzz = require("../../db/models/Buzz");
 
-const incrementLike = async (req, res, next) => {
+const incrementLikes = async (req, res, next) => {
   const { id } = req.params;
   try {
     const result = await Buzz.updateOne({ _id: id }, { $inc: { likes: 1 } });
@@ -21,4 +21,4 @@ const incrementLike = async (req, res, next) => {
   }
 };
 
-module.exports = { incrementLike };
+module.exports = { incrementLikes };
