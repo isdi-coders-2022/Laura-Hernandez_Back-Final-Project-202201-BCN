@@ -29,6 +29,8 @@
     "debug": "^4.3.3",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "express-joi-validation": "^5.0.1",
+    "express-validation": "^3.0.8",
     "helmet": "^5.0.2",
     "joi": "^17.6.0",
     "mongodb-memory-server": "^8.4.0",

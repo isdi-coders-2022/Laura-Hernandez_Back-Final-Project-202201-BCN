@@ -37,9 +37,8 @@ const addBuzz = async (req, res, next) => {
     });
     res.status(201).json(createdBuzz);
     debug(chalk.greenBright(`Buzz published correctly`));
-    return res.status(201).json(createdBuzz);
   } catch (error) {
-    return next(error);
+    next(error);
   }
 };
 
