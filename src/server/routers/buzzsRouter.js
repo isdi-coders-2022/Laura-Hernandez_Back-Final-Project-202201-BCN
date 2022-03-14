@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const { validate } = require("express-validation");
-const { incrementLike } = require("../controllers/buzzControllers");
+const { incrementLikes } = require("../controllers/buzzControllers");
 const {
   getAllBuzzs,
   deleteBuzz,
@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.get("/", getAllBuzzs);
 router.delete("/:id", deleteBuzz);
-router.patch("/:id/like", incrementLike);
+router.patch("/:id/like", incrementLikes);
 router.post("/new", validate(validationBuzzJoi), addBuzz);
 
 module.exports = router;
