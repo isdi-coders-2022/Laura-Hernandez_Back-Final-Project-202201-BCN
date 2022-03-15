@@ -16,20 +16,38 @@ describe("Given an incrementLike controller", () => {
         json: jest.fn(),
       };
       const next = jest.fn();
-      const buzzToLike = {
-        id: "12345",
-        topic: "General",
-        likes: 0,
-        comments: [],
-        author: "Jules",
-        text: "Some message",
-        date: "2022-03-08T18:11:03.390Z",
+      const responseUpdateLikes = {
+        modifiedCount: 1,
       };
 
-      Buzz.updateOne = jest.fn().mockResolvedValue(buzzToLike);
+      Buzz.updateOne = jest.fn().mockResolvedValue(responseUpdateLikes);
       await incrementLikes(req, res, next);
 
       expect(Buzz.updateOne).toHaveBeenCalled();
+      expect(res.json).toHaveBeenCalled();
+    });
+  });
+
+  describe("When it receives an nonexisting id to increment the prop likes", () => {
+    test("Then it should not call json method", async () => {
+      const req = {
+        params: {
+          id: "12345",
+        },
+      };
+      const res = {
+        json: jest.fn(),
+      };
+      const next = jest.fn();
+      const responseUpdateNotFound = {
+        modifiedCount: 0,
+      };
+
+      Buzz.updateOne = jest.fn().mockResolvedValue(responseUpdateNotFound);
+      await incrementLikes(req, res, next);
+
+      expect(Buzz.updateOne).toHaveBeenCalled();
+      expect(res.json).not.toHaveBeenCalled();
     });
   });
 
