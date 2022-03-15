@@ -72,10 +72,7 @@ describe("Given a generalError function", () => {
         return res;
       };
 
-      const error = {
-        message: "error",
-        code: 500,
-      };
+      const error = {};
 
       const mockedRes = mockRes();
 

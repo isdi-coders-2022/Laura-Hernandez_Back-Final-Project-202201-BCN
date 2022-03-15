@@ -32,4 +32,24 @@ describe("Given an incrementLike controller", () => {
       expect(Buzz.updateOne).toHaveBeenCalled();
     });
   });
+
+  describe("When it receives an invalid id to increment the prop likes", () => {
+    test("Then it should return an error", async () => {
+      const req = {
+        params: {
+          id: "12345",
+        },
+      };
+      const res = {
+        json: jest.fn(),
+      };
+      const next = jest.fn();
+      const error = new Error("Cast to ObjectId failed ...");
+
+      Buzz.updateOne = jest.fn().mockRejectedValue(error);
+      await incrementLikes(req, res, next);
+
+      expect(Buzz.updateOne).toHaveBeenCalled();
+    });
+  });
 });
