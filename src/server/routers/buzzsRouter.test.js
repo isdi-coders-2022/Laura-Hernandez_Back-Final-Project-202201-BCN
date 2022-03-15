@@ -56,11 +56,19 @@ describe("Given a /buzzs/:id endpoint", () => {
     });
   });
 
-  describe("When it receives a DELETE request with a nonexistent id", () => {
+  describe("When it receives a DELETE request with a incorrect id", () => {
     test("Then it should respond with a 400 status code", async () => {
       const noId = "12345";
 
       await request(app).delete(`/buzzs/${noId}`).expect(400);
+    });
+  });
+
+  describe("When it receives a DELETE request with a nonexistent id", () => {
+    test("Then it should respond with a 404 status code", async () => {
+      const noId = "622f3ee1fdb8a63d5055a402";
+
+      await request(app).delete(`/buzzs/${noId}`).expect(404);
     });
   });
 });

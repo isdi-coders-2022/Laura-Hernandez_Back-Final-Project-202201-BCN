@@ -1,5 +1,5 @@
 const Buzz = require("../../db/models/Buzz");
-const { getAllBuzzs, deleteBuzz } = require("./buzzsControllers");
+const { getAllBuzzs, deleteBuzz, addBuzz } = require("./buzzsControllers");
 
 describe("Given an getAllBuzzs controller", () => {
   beforeEach(() => {
@@ -82,6 +82,21 @@ describe("Given an deleteBuzz controller", () => {
       await deleteBuzz(req, null, next);
 
       expect(next).toHaveBeenCalledWith(error);
+    });
+  });
+});
+
+describe("Given an addBuzz controller", () => {
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
+  describe("When it receives a bad request to create", () => {
+    test("Then it should call next ", async () => {
+      const next = jest.fn();
+
+      await addBuzz(null, null, next);
+
+      expect(next).toHaveBeenCalled();
     });
   });
 });

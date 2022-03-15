@@ -36,7 +36,8 @@ const addBuzz = async (req, res, next) => {
       date,
       comments,
     });
-    res.status(201).json(createdBuzz);
+    res.status(201);
+    res.json(createdBuzz);
     debug(chalk.greenBright(`Buzz published correctly`));
   } catch (error) {
     next(error);
