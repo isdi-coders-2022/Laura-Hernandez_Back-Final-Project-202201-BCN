@@ -8,7 +8,7 @@ const incrementLikes = async (req, res, next) => {
   try {
     const result = await Buzz.updateOne({ _id: id }, { $inc: { likes: 1 } });
     if (result.modifiedCount === 1) {
-      res.json({});
+      res.json(`Buzz liked correctly`);
       debug(chalk.greenBright(`Buzz liked correctly`));
     } else {
       const error = new Error("Buzz not found");
