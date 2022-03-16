@@ -44,4 +44,14 @@ const addBuzz = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllBuzzs, deleteBuzz, addBuzz };
+const detailBuzz = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const buzz = await Buzz.findById(id);
+    res.json({ buzz });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { getAllBuzzs, deleteBuzz, addBuzz, detailBuzz };
