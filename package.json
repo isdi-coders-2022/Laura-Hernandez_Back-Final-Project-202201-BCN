@@ -47,7 +47,8 @@
       "!./src/**/serverUp.js",
       "!./src/index.js",
       "!./src/db/index.js",
-      "!./src/server/index.js"
+      "!./src/server/index.js",
+      "!./src/utils"
     ]
   }
 }
