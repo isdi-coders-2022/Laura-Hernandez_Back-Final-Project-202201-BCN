@@ -2,6 +2,7 @@ require("dotenv").config();
 const debug = require("debug")("skybuzz:server:buzzsControllers");
 const chalk = require("chalk");
 const Buzz = require("../../db/models/Buzz");
+const { notFoundError } = require("../../middlewares/errors");
 
 const getAllBuzzs = async (req, res) => {
   const buzzs = await Buzz.find();
@@ -48,7 +49,13 @@ const detailBuzz = async (req, res, next) => {
   const { id } = req.params;
   try {
     const buzz = await Buzz.findById(id);
-    res.json({ buzz });
+    if (buzz) {
+      debug(chalk.greenBright("Buzz details ok"));
+      res.json({ buzz });
+    } else {
+      debug(chalk.red("Buzz not found"));
+      next(notFoundError);
+    }
   } catch (error) {
     next(error);
   }
