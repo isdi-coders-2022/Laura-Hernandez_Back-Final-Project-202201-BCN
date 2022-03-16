@@ -12,6 +12,7 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(express.json());
+app.use("/users", usersRouters);
 app.use("/buzzs", buzzsRouter);
 
 app.use(notFoundError);
