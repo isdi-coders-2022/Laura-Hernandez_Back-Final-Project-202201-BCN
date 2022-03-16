@@ -5,6 +5,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const { notFoundError, generalError } = require("../middlewares/errors");
 const buzzsRouter = require("./routers/buzzsRouter");
+const usersRouters = require("./routers/usersRouter");
 
 const app = express();
 
