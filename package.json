@@ -48,7 +48,7 @@
       "!./src/index.js",
       "!./src/db/index.js",
       "!./src/server/index.js",
-      "!./src/utils"
+      "!./src/utils/encrypt.js"
     ]
   }
 }
