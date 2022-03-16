@@ -10,7 +10,7 @@ beforeEach(() => {
 });
 
 describe("Given an loginUser controller", () => {
-  describe("When it receives a request with username Rosa0 and the correct password, and the user exists ", () => {
+  describe("When it receives a request with username Rosa0 and the correct password, and the user exists in db ", () => {
     test("Then it should call method json with the user's token in the receive response", async () => {
       const req = {
         body: { username: "Laura0", password: "Laura1234" },
