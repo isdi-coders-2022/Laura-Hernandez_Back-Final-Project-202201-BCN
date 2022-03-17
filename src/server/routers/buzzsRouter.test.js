@@ -5,8 +5,10 @@ const request = require("supertest");
 const connectToDataBase = require("../../db/index");
 const app = require("..");
 const Buzz = require("../../db/models/Buzz");
+const User = require("../../db/models/User");
 
 let mongoServer;
+let userToken;
 
 beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
@@ -21,15 +23,29 @@ beforeEach(async () => {
     author: "Madonna",
     text: "Madonna is writting a message",
   });
+
   await Buzz.create({
     comments: [],
     author: "Janis",
     text: "Janis is writting a message",
   });
+
+  await User.create({
+    name: "Laura",
+    username: "Laura0",
+    password: "$2b$10$dMTNK.KOdxL0WAa5v57J4eaRc/1HUGSmr5KSPC4PT17z.HqIOtoHK",
+  });
+
+  const { body } = await request(app).post("/users/login").send({
+    username: "Laura0",
+    password: "Laura1234",
+  });
+  userToken = body.token;
 });
 
 afterEach(async () => {
   await Buzz.deleteMany({});
+  await User.deleteMany({});
 });
 
 afterAll(() => {
@@ -48,11 +64,14 @@ describe("Given an endpoint /buzzs/", () => {
 });
 
 describe("Given a /buzzs/:id endpoint", () => {
-  describe("When it receives a DELETE request with a buzz id", () => {
+  describe("When it receives a DELETE request with a buzz id, and a correct token", () => {
     test("Then it should respond with a 200 status code", async () => {
-      const { body } = await request(app).get("/buzzs/ ").expect(200);
+      const { body } = await request(app).get("/buzzs/").expect(200);
 
-      await request(app).delete(`/buzzs/${body.buzzs[0].id}`).expect(200);
+      await request(app)
+        .delete(`/buzzs/${body.buzzs[0].id}`)
+        .set("Authorization", `Bearer ${userToken}`)
+        .expect(200);
     });
   });
 
@@ -60,7 +79,10 @@ describe("Given a /buzzs/:id endpoint", () => {
     test("Then it should respond with a 400 status code", async () => {
       const noId = "12345";
 
-      await request(app).delete(`/buzzs/${noId}`).expect(400);
+      await request(app)
+        .delete(`/buzzs/${noId}`)
+        .set("Authorization", `Bearer ${userToken}`)
+        .expect(400);
     });
   });
 
@@ -68,7 +90,10 @@ describe("Given a /buzzs/:id endpoint", () => {
     test("Then it should respond with a 404 status code", async () => {
       const noId = "622f3ee1fdb8a63d5055a402";
 
-      await request(app).delete(`/buzzs/${noId}`).expect(404);
+      await request(app)
+        .delete(`/buzzs/${noId}`)
+        .set("Authorization", `Bearer ${userToken}`)
+        .expect(404);
     });
   });
 });
@@ -82,7 +107,11 @@ describe("Given a /buzzs/new endpoint", () => {
         text: "That's thirty minutes away. I'll be there in ten.",
       };
 
-      await request(app).post("/buzzs/new ").send(dataBuzz).expect(201);
+      await request(app)
+        .post("/buzzs/new ")
+        .set("Authorization", `Bearer ${userToken}`)
+        .send(dataBuzz)
+        .expect(201);
     });
   });
 });
