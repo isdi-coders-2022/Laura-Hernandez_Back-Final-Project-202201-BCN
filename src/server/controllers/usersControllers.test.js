@@ -1,3 +1,4 @@
+require("dotenv").config();
 const chalk = require("chalk");
 const jwt = require("jsonwebtoken");
 const User = require("../../db/models/User");
