@@ -107,7 +107,11 @@ describe("Given a /buzzs/new endpoint", () => {
         text: "That's thirty minutes away. I'll be there in ten.",
       };
 
-      await request(app).post("/buzzs/new ").send(dataBuzz).expect(201);
+      await request(app)
+        .post("/buzzs/new ")
+        .set("Authorization", `Bearer ${userToken}`)
+        .send(dataBuzz)
+        .expect(201);
     });
   });
 });
