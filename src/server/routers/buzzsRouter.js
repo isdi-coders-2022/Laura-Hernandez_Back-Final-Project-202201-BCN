@@ -16,7 +16,7 @@ const router = express.Router();
 router.get("/", getAllBuzzs);
 router.get("/:id", detailBuzz);
 router.delete("/:id", auth, deleteBuzz);
-router.patch("/:id/like", incrementLikes);
-router.post("/new", validate(validationBuzzJoi), addBuzz);
+router.patch("/:id/like", auth, incrementLikes);
+router.post("/new", auth, validate(validationBuzzJoi), addBuzz);
 
 module.exports = router;
