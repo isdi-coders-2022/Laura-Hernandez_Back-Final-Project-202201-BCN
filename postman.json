@@ -1,243 +1,209 @@
 {
-	"info": {
-		"_postman_id": "74cfe684-de36-48c1-9c1c-12f6a6da0fc4",
-		"name": "Laura-Hernandez-SkyBuzz",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Get Buzzs",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{origin}}buzzs/",
-					"host": [
-						"{{origin}}buzzs"
-					],
-					"path": [
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete a Buzz",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGF1cmEiLCJpZCI6IjYyMzI0NWRlY2FhN2Q2OWY5NmYxMGE5NSIsImlhdCI6MTY0NzU0NjczNywiZXhwIjoxNjQ4MTUxNTM3fQ.aF4jBmqfTe6wrAPblG1MQCFtTkyzDMivc86Uk39w6oU",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{origin}}buzzs/:id",
-					"host": [
-						"{{origin}}buzzs"
-					],
-					"path": [
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "622e7cefb077ebdf25a44af8"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Post a Buzz",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGF1cmEiLCJpZCI6IjYyMzI0NWRlY2FhN2Q2OWY5NmYxMGE5NSIsImlhdCI6MTY0NzU0NjY1MiwiZXhwIjoxNjQ4MTUxNDUyfQ.fHMFWk4uXhpzG3Zhdviijl_We4Z7YsPVzd58I_Dgi2k",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"topic\": \"general\",\n    \"author\": \"Freddie\",\n    \"text\": \"We are the champions\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{origin}}buzzs/new",
-					"host": [
-						"{{origin}}buzzs"
-					],
-					"path": [
-						"new"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Increment Likes",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGF1cmEiLCJpZCI6IjYyMzI0NWRlY2FhN2Q2OWY5NmYxMGE5NSIsImlhdCI6MTY0NzU0NjY1MiwiZXhwIjoxNjQ4MTUxNDUyfQ.fHMFWk4uXhpzG3Zhdviijl_We4Z7YsPVzd58I_Dgi2k",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PATCH",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:4005/buzzs/622e7cefb077ebdf25a44af8/like",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "4005",
-					"path": [
-						"buzzs",
-						"622e7cefb077ebdf25a44af8",
-						"like"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Detail Buzz",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{origin}}buzzs/:id",
-					"host": [
-						"{{origin}}buzzs"
-					],
-					"path": [
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "622e7cefb077ebdf25a44af8"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Login",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGF1cmEiLCJpZCI6IjYyMzI0NWRlY2FhN2Q2OWY5NmYxMGE5NSIsImlhdCI6MTY0NzU0NjczNywiZXhwIjoxNjQ4MTUxNTM3fQ.aF4jBmqfTe6wrAPblG1MQCFtTkyzDMivc86Uk39w6oU",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"username\": \"Laura0\",\n    \"password\": \"Laura1234\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{origin}}users/login",
-					"host": [
-						"{{origin}}users"
-					],
-					"path": [
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Register",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Adri\",\n    \"username\": \"Adri0\",\n    \"password\": \"Adri1234\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{origin}}users/register",
-					"host": [
-						"{{origin}}users"
-					],
-					"path": [
-						"register"
-					]
-				}
-			},
-			"response": []
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"value": "",
-			"type": "string",
-			"disabled": true
-		},
-		{
-			"key": "origin",
-			"value": "https://skybuzz-laura-hernandez.onrender.com/",
-			"type": "string"
-		}
-	]
+  "info": {
+    "_postman_id": "74cfe684-de36-48c1-9c1c-12f6a6da0fc4",
+    "name": "Laura-Hernandez-SkyBuzz",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Buzzs",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{origin}}buzzs/",
+          "host": ["{{origin}}buzzs"],
+          "path": [""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete a Buzz",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGF1cmEiLCJpZCI6IjYyMzI0NWRlY2FhN2Q2OWY5NmYxMGE5NSIsImlhdCI6MTY0NzU0NjczNywiZXhwIjoxNjQ4MTUxNTM3fQ.aF4jBmqfTe6wrAPblG1MQCFtTkyzDMivc86Uk39w6oU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{origin}}buzzs/:id",
+          "host": ["{{origin}}buzzs"],
+          "path": [":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "622e7cefb077ebdf25a44af8"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Post a Buzz",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGF1cmEiLCJpZCI6IjYyMzI0NWRlY2FhN2Q2OWY5NmYxMGE5NSIsImlhdCI6MTY0NzU0NjY1MiwiZXhwIjoxNjQ4MTUxNDUyfQ.fHMFWk4uXhpzG3Zhdviijl_We4Z7YsPVzd58I_Dgi2k",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"topic\": \"general\",\n    \"author\": \"Freddie\",\n    \"text\": \"We are the champions\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{origin}}buzzs/new",
+          "host": ["{{origin}}buzzs"],
+          "path": ["new"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Increment Likes",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGF1cmEiLCJpZCI6IjYyMzI0NWRlY2FhN2Q2OWY5NmYxMGE5NSIsImlhdCI6MTY0NzU0NjY1MiwiZXhwIjoxNjQ4MTUxNDUyfQ.fHMFWk4uXhpzG3Zhdviijl_We4Z7YsPVzd58I_Dgi2k",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4005/buzzs/622e7cefb077ebdf25a44af8/like",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4005",
+          "path": ["buzzs", "622e7cefb077ebdf25a44af8", "like"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Detail Buzz",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{origin}}buzzs/:id",
+          "host": ["{{origin}}buzzs"],
+          "path": [":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "622e7cefb077ebdf25a44af8"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGF1cmEiLCJpZCI6IjYyMzI0NWRlY2FhN2Q2OWY5NmYxMGE5NSIsImlhdCI6MTY0NzU0NjczNywiZXhwIjoxNjQ4MTUxNTM3fQ.aF4jBmqfTe6wrAPblG1MQCFtTkyzDMivc86Uk39w6oU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"Laura0\",\n    \"password\": \"Laura1234\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{origin}}users/login",
+          "host": ["{{origin}}users"],
+          "path": ["login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Adri\",\n    \"username\": \"Adri0\",\n    \"password\": \"Adri1234\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{origin}}users/register",
+          "host": ["{{origin}}users"],
+          "path": ["register"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "value": "",
+      "type": "string",
+      "disabled": true
+    },
+    {
+      "key": "origin",
+      "value": "https://skybuzz-laura-hernandez.onrender.com/",
+      "type": "string"
+    }
+  ]
 }
