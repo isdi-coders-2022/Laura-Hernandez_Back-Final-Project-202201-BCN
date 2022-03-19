@@ -46,15 +46,13 @@ const registerUser = async (req, res, next) => {
   }
   try {
     const encryptedPasword = await encrypt(password);
-    await User.create({
+    const createdUser = await User.create({
       name,
       username,
       password: encryptedPasword,
     });
     debug(chalk.greenBright(`User ${username} was registered correctly`));
-    return res
-      .status(201)
-      .json({ message: `User ${username} was registered correctly` });
+    return res.status(201).json(createdUser);
   } catch (error) {
     return next(error);
   }
