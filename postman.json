@@ -21,6 +21,16 @@
     {
       "name": "Delete a Buzz",
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGF1cmEiLCJpZCI6IjYyMzI0NWRlY2FhN2Q2OWY5NmYxMGE5NSIsImlhdCI6MTY0NzU0NjczNywiZXhwIjoxNjQ4MTUxNTM3fQ.aF4jBmqfTe6wrAPblG1MQCFtTkyzDMivc86Uk39w6oU",
+              "type": "string"
+            }
+          ]
+        },
         "method": "DELETE",
         "header": [],
         "url": {
@@ -30,7 +40,7 @@
           "variable": [
             {
               "key": "id",
-              "value": "622f0ddd286f52901e9cf738"
+              "value": "622e7cefb077ebdf25a44af8"
             }
           ]
         }
@@ -40,6 +50,16 @@
     {
       "name": "Post a Buzz",
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGF1cmEiLCJpZCI6IjYyMzI0NWRlY2FhN2Q2OWY5NmYxMGE5NSIsImlhdCI6MTY0NzU0NjY1MiwiZXhwIjoxNjQ4MTUxNDUyfQ.fHMFWk4uXhpzG3Zhdviijl_We4Z7YsPVzd58I_Dgi2k",
+              "type": "string"
+            }
+          ]
+        },
         "method": "POST",
         "header": [],
         "body": {
@@ -62,18 +82,24 @@
     {
       "name": "Increment Likes",
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGF1cmEiLCJpZCI6IjYyMzI0NWRlY2FhN2Q2OWY5NmYxMGE5NSIsImlhdCI6MTY0NzU0NjY1MiwiZXhwIjoxNjQ4MTUxNDUyfQ.fHMFWk4uXhpzG3Zhdviijl_We4Z7YsPVzd58I_Dgi2k",
+              "type": "string"
+            }
+          ]
+        },
         "method": "PATCH",
         "header": [],
         "url": {
-          "raw": "{{origin}}buzzs/:id/like",
-          "host": ["{{origin}}buzzs"],
-          "path": [":id", "like"],
-          "variable": [
-            {
-              "key": "id",
-              "value": "622e7d0fb077ebdf25a44afc"
-            }
-          ]
+          "raw": "http://localhost:4005/buzzs/622e7cefb077ebdf25a44af8/like",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4005",
+          "path": ["buzzs", "622e7cefb077ebdf25a44af8", "like"]
         }
       },
       "response": []
@@ -100,6 +126,16 @@
     {
       "name": "Login",
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGF1cmEiLCJpZCI6IjYyMzI0NWRlY2FhN2Q2OWY5NmYxMGE5NSIsImlhdCI6MTY0NzU0NjczNywiZXhwIjoxNjQ4MTUxNTM3fQ.aF4jBmqfTe6wrAPblG1MQCFtTkyzDMivc86Uk39w6oU",
+              "type": "string"
+            }
+          ]
+        },
         "method": "POST",
         "header": [],
         "body": {
@@ -115,6 +151,28 @@
           "raw": "{{origin}}users/login",
           "host": ["{{origin}}users"],
           "path": ["login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Adri\",\n    \"username\": \"Adri0\",\n    \"password\": \"Adri1234\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{origin}}users/register",
+          "host": ["{{origin}}users"],
+          "path": ["register"]
         }
       },
       "response": []
