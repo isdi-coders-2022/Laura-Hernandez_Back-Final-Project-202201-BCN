@@ -1,8 +1,10 @@
 require("dotenv").config();
 const bcrypt = require("bcrypt");
+const debug = require("debug")("skybuzz:usersControllers");
 const chalk = require("chalk");
 const jwt = require("jsonwebtoken");
 const User = require("../../db/models/User");
+const encrypt = require("../../utils/encrypt");
 
 const loginUser = async (req, res, next) => {
   const { username, password } = req.body;
@@ -30,4 +32,32 @@ const loginUser = async (req, res, next) => {
   return res.json({ token });
 };
 
-module.exports = { loginUser };
+const registerUser = async (req, res, next) => {
+  const { name, username, password } = req.body;
+  const user = await User.findOne({ username });
+  if (!username || !password || user) {
+    const errorWPW = new Error(
+      chalk.redBright(
+        `Something went wrong or username ${username} already exists`
+      )
+    );
+    errorWPW.code = 400;
+    return next(errorWPW);
+  }
+  try {
+    const encryptedPasword = await encrypt(password);
+    await User.create({
+      name,
+      username,
+      password: encryptedPasword,
+    });
+    debug(chalk.greenBright(`User ${username} was registered correctly`));
+    return res
+      .status(201)
+      .json({ message: `User ${username} was registered correctly` });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+module.exports = { loginUser, registerUser };
