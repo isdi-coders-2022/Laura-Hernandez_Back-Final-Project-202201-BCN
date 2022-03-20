@@ -5,7 +5,7 @@ const Buzz = require("../../db/models/Buzz");
 const { notFoundError } = require("../../middlewares/errors");
 
 const getAllBuzzs = async (req, res) => {
-  const buzzs = await Buzz.find().populate("comments", "id");
+  const buzzs = await Buzz.find().populate("comments", "id").sort({ date: -1 });
   res.json({ buzzs });
 };
 
