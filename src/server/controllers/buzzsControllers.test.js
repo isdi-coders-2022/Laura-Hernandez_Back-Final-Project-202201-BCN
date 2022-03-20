@@ -29,7 +29,8 @@ describe("Given an getAllBuzzs controller", () => {
       ];
 
       Buzz.find = jest.fn().mockReturnThis();
-      Buzz.populate = jest.fn().mockResolvedValue(buzzs);
+      Buzz.populate = jest.fn().mockReturnThis();
+      Buzz.sort = jest.fn().mockResolvedValue(buzzs);
 
       await getAllBuzzs(null, res);
 
