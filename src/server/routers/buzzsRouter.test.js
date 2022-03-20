@@ -18,22 +18,22 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
+  const laura = await User.create({
+    name: "Laura",
+    username: "Laura0",
+    password: "$2b$10$dMTNK.KOdxL0WAa5v57J4eaRc/1HUGSmr5KSPC4PT17z.HqIOtoHK",
+  });
+
   await Buzz.create({
     comments: [],
-    author: "Madonna",
+    author: laura.id,
     text: "Madonna is writting a message",
   });
 
   await Buzz.create({
     comments: [],
-    author: "Janis",
+    author: laura.id,
     text: "Janis is writting a message",
-  });
-
-  await User.create({
-    name: "Laura",
-    username: "Laura0",
-    password: "$2b$10$dMTNK.KOdxL0WAa5v57J4eaRc/1HUGSmr5KSPC4PT17z.HqIOtoHK",
   });
 
   const { body } = await request(app).post("/users/login").send({
@@ -103,7 +103,6 @@ describe("Given a /buzzs/new endpoint", () => {
     test("Then it should respond with a 201 status code", async () => {
       const dataBuzz = {
         topic: "Pulp Fiction",
-        author: "Mr.Wolf",
         text: "That's thirty minutes away. I'll be there in ten.",
       };
 

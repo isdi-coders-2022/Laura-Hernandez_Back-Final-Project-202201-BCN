@@ -2,7 +2,8 @@ const { model, Schema } = require("mongoose");
 
 const BuzzSchema = new Schema({
   author: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
   text: {

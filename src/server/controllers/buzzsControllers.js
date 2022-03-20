@@ -1,11 +1,15 @@
 require("dotenv").config();
 const debug = require("debug")("skybuzz:server:buzzsControllers");
 const chalk = require("chalk");
+const jwt = require("jsonwebtoken");
 const Buzz = require("../../db/models/Buzz");
 const { notFoundError } = require("../../middlewares/errors");
 
 const getAllBuzzs = async (req, res) => {
-  const buzzs = await Buzz.find().populate("comments", "id").sort({ date: -1 });
+  const buzzs = await Buzz.find()
+    .populate("comments", "id")
+    .populate("author", "name username")
+    .sort({ date: -1 });
   res.json({ buzzs });
 };
 
@@ -27,9 +31,17 @@ const deleteBuzz = async (req, res, next) => {
   }
 };
 
+const getAuthor = (headerAuth) => {
+  const userToken = headerAuth.replace("Bearer ", "");
+  const payload = jwt.decode(userToken, process.env.JWT_SECRET);
+  debug(payload);
+  return payload.id;
+};
+
 const addBuzz = async (req, res, next) => {
   try {
-    const { text, author, topic, date, comments } = req.body;
+    const { text, topic, date, comments } = req.body;
+    const author = getAuthor(req.header("Authorization"));
     const createdBuzz = await Buzz.create({
       text,
       author,
