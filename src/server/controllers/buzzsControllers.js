@@ -1,9 +1,9 @@
 require("dotenv").config();
 const debug = require("debug")("skybuzz:server:buzzsControllers");
 const chalk = require("chalk");
-const jwt = require("jsonwebtoken");
 const Buzz = require("../../db/models/Buzz");
 const { notFoundError } = require("../../middlewares/errors");
+const getAuthor = require("../../utils/getAuthor");
 
 const getAllBuzzs = async (req, res) => {
   const buzzs = await Buzz.find()
@@ -29,13 +29,6 @@ const deleteBuzz = async (req, res, next) => {
     error.code = 400;
     next(error);
   }
-};
-
-const getAuthor = (headerAuth) => {
-  const userToken = headerAuth.replace("Bearer ", "");
-  const payload = jwt.decode(userToken, process.env.JWT_SECRET);
-  debug(payload);
-  return payload.id;
 };
 
 const addBuzz = async (req, res, next) => {
@@ -66,7 +59,9 @@ const addBuzz = async (req, res, next) => {
 const detailBuzz = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const buzz = await Buzz.findById(id);
+    const buzz = await Buzz.findById(id)
+      .populate("comments", "id")
+      .populate("author", "name username");
     if (buzz) {
       debug(chalk.greenBright("Buzz details ok"));
       res.json({ buzz });

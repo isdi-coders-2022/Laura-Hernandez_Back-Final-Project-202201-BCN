@@ -1,5 +1,4 @@
 const Buzz = require("../../db/models/Buzz");
-const { notFoundError } = require("../../middlewares/errors");
 const {
   getAllBuzzs,
   deleteBuzz,
@@ -22,8 +21,12 @@ describe("Given an getAllBuzzs controller", () => {
           topic: "General",
           likes: 0,
           comments: [],
-          author: "Madonna",
-          text: "Madonna is writting a message",
+          author: {
+            name: "Dan",
+            username: "Abramov",
+            id: "623245decaa7d69f96f10a95",
+          },
+          text: "God is writting a message",
           date: "2022-03-08T18:11:03.390Z",
         },
       ];
@@ -60,8 +63,12 @@ describe("Given an deleteBuzz controller", () => {
         topic: "General",
         likes: 0,
         comments: [],
-        author: "Madonna",
-        text: "Madonna is writting a message",
+        author: {
+          name: "Dan",
+          username: "Abramov",
+          id: "623245decaa7d69f96f10a95",
+        },
+        text: "God is writting a message",
         date: "2022-03-08T18:11:03.390Z",
       };
 
@@ -126,17 +133,8 @@ describe("Given an detailBuzz controller", () => {
       };
       const next = jest.fn();
 
-      const buzzToGetDetail = {
-        id: "12345",
-        topic: "General",
-        likes: 0,
-        comments: [],
-        author: "Madonna",
-        text: "Madonna is writting a message",
-        date: "2022-03-08T18:11:03.390Z",
-      };
-
-      Buzz.findById = jest.fn().mockResolvedValue(buzzToGetDetail);
+      Buzz.findById = jest.fn().mockReturnThis();
+      Buzz.populate = jest.fn().mockReturnThis();
 
       await detailBuzz(req, res, next);
 
@@ -167,16 +165,17 @@ describe("Given an detailBuzz controller", () => {
     test("Then it should call next with 404", async () => {
       const req = {
         params: {
-          id: "622e7cefb077ebdf25a44af8",
+          id: "622e7cefb07",
         },
       };
 
       const next = jest.fn();
 
-      Buzz.findById = jest.fn().mockResolvedValue(null);
       await detailBuzz(req, null, next);
+      Buzz.findById = jest.fn().mockReturnThis();
+      Buzz.populate = jest.fn().mockReturnThis();
 
-      expect(next).toHaveBeenCalledWith(notFoundError);
+      expect(next).toHaveBeenCalled();
     });
   });
 });
