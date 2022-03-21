@@ -40,7 +40,7 @@
           "variable": [
             {
               "key": "id",
-              "value": "622e7cefb077ebdf25a44af8"
+              "value": "62383ef3ffdb3f7f69cdb82d"
             }
           ]
         }
@@ -95,11 +95,17 @@
         "method": "PATCH",
         "header": [],
         "url": {
-          "raw": "http://localhost:4005/buzzs/622e7cefb077ebdf25a44af8/like",
+          "raw": "http://localhost:4005/buzzs/:id/like",
           "protocol": "http",
           "host": ["localhost"],
           "port": "4005",
-          "path": ["buzzs", "622e7cefb077ebdf25a44af8", "like"]
+          "path": ["buzzs", ":id", "like"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "6237ca0a2d8143d62ae4cce4"
+            }
+          ]
         }
       },
       "response": []
@@ -126,16 +132,6 @@
     {
       "name": "Login",
       "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGF1cmEiLCJpZCI6IjYyMzI0NWRlY2FhN2Q2OWY5NmYxMGE5NSIsImlhdCI6MTY0NzU0NjczNywiZXhwIjoxNjQ4MTUxNTM3fQ.aF4jBmqfTe6wrAPblG1MQCFtTkyzDMivc86Uk39w6oU",
-              "type": "string"
-            }
-          ]
-        },
         "method": "POST",
         "header": [],
         "body": {
@@ -162,7 +158,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"name\": \"Adri\",\n    \"username\": \"Adri0\",\n    \"password\": \"Adri1234\"\n}",
+          "raw": "{\n    \"name\": \"Patatas\",\n    \"username\": \"Patatas0\",\n    \"password\": \"Patatas1234\"\n}",
           "options": {
             "raw": {
               "language": "json"
