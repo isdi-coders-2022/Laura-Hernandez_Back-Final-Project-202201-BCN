@@ -6,7 +6,7 @@ const { notFoundError } = require("../../middlewares/errors");
 const getAuthor = require("../../utils/getAuthor");
 
 const getAllBuzzs = async (req, res) => {
-  const buzzs = await Buzz.find()
+  const buzzs = await Buzz.find({ isComment: false })
     .populate({ path: "author", select: "name username" })
     .populate({
       path: "comments",

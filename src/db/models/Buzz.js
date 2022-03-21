@@ -23,6 +23,10 @@ const BuzzSchema = new Schema({
     type: Number,
     default: 0,
   },
+  isComment: {
+    type: Boolean,
+    default: false,
+  },
   comments: [
     {
       type: Schema.Types.ObjectId,

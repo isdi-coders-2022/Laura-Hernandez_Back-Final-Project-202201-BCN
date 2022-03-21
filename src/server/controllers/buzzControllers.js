@@ -35,6 +35,7 @@ const addComment = async (req, res, next) => {
         text,
         author,
         topic,
+        isComment: true,
       });
       debug(createdComment);
       buzz.comments.push(createdComment.id);
