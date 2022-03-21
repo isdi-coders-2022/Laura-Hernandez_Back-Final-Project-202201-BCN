@@ -49,8 +49,14 @@ const addBuzz = async (req, res, next) => {
       date,
       comments,
     });
+
+    const responseBuzz = await Buzz.findById(createdBuzz.id).populate(
+      "author",
+      "name username"
+    );
+
     res.status(201);
-    res.json(createdBuzz);
+    res.json(responseBuzz);
     debug(chalk.greenBright(`Buzz published correctly`));
   } catch (error) {
     next(error);
