@@ -7,7 +7,7 @@ const getAuthor = require("../../utils/getAuthor");
 
 const getAllBuzzs = async (req, res) => {
   const buzzs = await Buzz.find()
-    .populate("comments", "id")
+    .populate("comments", "id text author.name")
     .populate("author", "name username")
     .sort({ date: -1 });
   res.json({ buzzs });
@@ -60,7 +60,7 @@ const detailBuzz = async (req, res, next) => {
   const { id } = req.params;
   try {
     const buzz = await Buzz.findById(id)
-      .populate("comments", "id")
+      .populate("comments", "id text author")
       .populate("author", "name username");
     if (buzz) {
       debug(chalk.greenBright("Buzz details ok"));
