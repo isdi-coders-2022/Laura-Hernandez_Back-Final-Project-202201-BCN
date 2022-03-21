@@ -1,10 +1,5 @@
 const Buzz = require("../../db/models/Buzz");
-const {
-  getAllBuzzs,
-  deleteBuzz,
-  addBuzz,
-  detailBuzz,
-} = require("./buzzsControllers");
+const { getAllBuzzs, addBuzz, detailBuzz } = require("./buzzsControllers");
 
 describe("Given an getAllBuzzs controller", () => {
   beforeEach(() => {
@@ -39,64 +34,6 @@ describe("Given an getAllBuzzs controller", () => {
 
       expect(Buzz.find).toHaveBeenCalled();
       expect(res.json).toHaveBeenCalledWith({ buzzs });
-    });
-  });
-});
-
-describe("Given an deleteBuzz controller", () => {
-  beforeEach(() => {
-    jest.resetAllMocks();
-  });
-  describe("When it receives an existing id to delete", () => {
-    test("Then it should call method json with an empty buzz", async () => {
-      const req = {
-        params: {
-          id: "12345",
-        },
-      };
-      const res = {
-        json: jest.fn(),
-      };
-      const next = jest.fn();
-      const buzzToDelete = {
-        id: "12345",
-        topic: "General",
-        likes: 0,
-        comments: [],
-        author: {
-          name: "Dan",
-          username: "Abramov",
-          id: "623245decaa7d69f96f10a95",
-        },
-        text: "God is writting a message",
-        date: "2022-03-08T18:11:03.390Z",
-      };
-
-      Buzz.findByIdAndRemove = jest.fn().mockResolvedValue(buzzToDelete);
-
-      await deleteBuzz(req, res, next);
-
-      expect(res.json).toHaveBeenCalledWith({});
-      expect(next).not.toHaveBeenCalled();
-    });
-  });
-
-  describe("When it receives an invalid id to delete", () => {
-    test("Then it should call next with an error", async () => {
-      const req = {
-        params: {
-          id: "gehwwefw",
-        },
-      };
-
-      const next = jest.fn();
-      const error = new Error("Id not valid");
-
-      Buzz.findByIdAndRemove = jest.fn().mockRejectedValue(error);
-
-      await deleteBuzz(req, null, next);
-
-      expect(next).toHaveBeenCalledWith(error);
     });
   });
 });

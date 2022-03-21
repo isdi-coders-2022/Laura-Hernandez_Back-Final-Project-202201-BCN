@@ -1,7 +1,6 @@
 require("dotenv").config();
 const debug = require("debug")("skybuzz:server:buzzsControllers");
 const chalk = require("chalk");
-const mongoose = require("mongoose");
 const Buzz = require("../../db/models/Buzz");
 const { notFoundError } = require("../../middlewares/errors");
 const getAuthor = require("../../utils/getAuthor");
