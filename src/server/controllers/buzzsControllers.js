@@ -59,7 +59,9 @@ const addBuzz = async (req, res, next) => {
 const detailBuzz = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const buzz = await Buzz.findById(id);
+    const buzz = await Buzz.findById(id)
+      .populate("comments", "id")
+      .populate("author", "name username");
     if (buzz) {
       debug(chalk.greenBright("Buzz details ok"));
       res.json({ buzz });
