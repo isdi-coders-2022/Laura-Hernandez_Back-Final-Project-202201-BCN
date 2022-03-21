@@ -7,8 +7,8 @@ const getAuthor = require("../../utils/getAuthor");
 
 const getAllBuzzs = async (req, res) => {
   const buzzs = await Buzz.find()
-    .populate("comments", "id text author.name")
-    .populate("author", "name username")
+    .populate({ path: "author", select: "name username" })
+    .populate({ path: "comments", select: "author id topic likes date text" })
     .sort({ date: -1 });
   res.json({ buzzs });
 };
