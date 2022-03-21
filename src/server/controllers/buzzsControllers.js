@@ -1,6 +1,7 @@
 require("dotenv").config();
 const debug = require("debug")("skybuzz:server:buzzsControllers");
 const chalk = require("chalk");
+const mongoose = require("mongoose");
 const Buzz = require("../../db/models/Buzz");
 const { notFoundError } = require("../../middlewares/errors");
 const getAuthor = require("../../utils/getAuthor");
@@ -20,8 +21,14 @@ const getAllBuzzs = async (req, res) => {
 const deleteBuzz = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const buzz = await Buzz.findByIdAndRemove(id);
-    if (buzz) {
+    const author = getAuthor(req.header("Authorization"));
+    const buzz = await Buzz.findById(id).populate({
+      path: "author",
+      select: "name",
+    });
+
+    if (buzz && buzz.author.id === author) {
+      await Buzz.findByIdAndRemove(id);
       res.json({});
       debug(chalk.greenBright(`Buzz deleted correctly`));
     } else {

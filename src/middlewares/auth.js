@@ -1,6 +1,5 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-const debug = require("debug")("skybuzz:server:middlewares:auth");
 
 const auth = async (req, res, next) => {
   const headerAuth = req.header("Authorization");
@@ -11,8 +10,6 @@ const auth = async (req, res, next) => {
     next(error);
   } else {
     const userToken = headerAuth.replace("Bearer ", "");
-    debug(headerAuth);
-
     try {
       if (!jwt.verify(userToken, process.env.JWT_SECRET)) {
         const error = new Error("Unable to verify");
