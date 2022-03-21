@@ -6,4 +6,4 @@ const getAuthor = (headerAuth) => {
   return payload.id;
 };
 
-export default getAuthor;
+module.exports = getAuthor;
