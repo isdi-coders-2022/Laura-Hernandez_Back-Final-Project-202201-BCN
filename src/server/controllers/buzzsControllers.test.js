@@ -22,8 +22,12 @@ describe("Given an getAllBuzzs controller", () => {
           topic: "General",
           likes: 0,
           comments: [],
-          author: "Madonna",
-          text: "Madonna is writting a message",
+          author: {
+            name: "Dan",
+            username: "Abramov",
+            id: "623245decaa7d69f96f10a95",
+          },
+          text: "God is writting a message",
           date: "2022-03-08T18:11:03.390Z",
         },
       ];
@@ -60,8 +64,12 @@ describe("Given an deleteBuzz controller", () => {
         topic: "General",
         likes: 0,
         comments: [],
-        author: "Madonna",
-        text: "Madonna is writting a message",
+        author: {
+          name: "Dan",
+          username: "Abramov",
+          id: "623245decaa7d69f96f10a95",
+        },
+        text: "God is writting a message",
         date: "2022-03-08T18:11:03.390Z",
       };
 
@@ -131,8 +139,12 @@ describe("Given an detailBuzz controller", () => {
         topic: "General",
         likes: 0,
         comments: [],
-        author: "Madonna",
-        text: "Madonna is writting a message",
+        author: {
+          name: "Dan",
+          username: "Abramov",
+          id: "623245decaa7d69f96f10a95",
+        },
+        text: "God is writting a message",
         date: "2022-03-08T18:11:03.390Z",
       };
 
