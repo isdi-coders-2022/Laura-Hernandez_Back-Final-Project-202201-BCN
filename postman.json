@@ -55,7 +55,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGF1cmEiLCJpZCI6IjYyMzI0NWRlY2FhN2Q2OWY5NmYxMGE5NSIsImlhdCI6MTY0NzU0NjY1MiwiZXhwIjoxNjQ4MTUxNDUyfQ.fHMFWk4uXhpzG3Zhdviijl_We4Z7YsPVzd58I_Dgi2k",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiR3VpbGxlbSIsImlkIjoiNjIzNjEzOTdhZTEwNmZkMDRhZGQyZDUyIiwiaWF0IjoxNjQ3ODcyNjA5LCJleHAiOjE2NDg0Nzc0MDl9.yd-LU7DLmjVPM0v1qL4Jaa9hEy5aNR3IT4JTssgS-90",
               "type": "string"
             }
           ]
@@ -64,7 +64,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"topic\": \"general\",\n    \"author\": \"Freddie\",\n    \"text\": \"We are the champions\"\n}",
+          "raw": "{\n    \"topic\": \"resources\",\n    \"text\": \"Yo sinceramente no lo tengo en apuntes y ya esta perdidisimo en el mar del olvido\"\n\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -122,7 +122,26 @@
           "variable": [
             {
               "key": "id",
-              "value": "622e7cefb077ebdf25a44af8"
+              "value": "6237bd6522555c2307ff8431"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Detail Buzz Comments",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{origin}}buzzs/:id/comments",
+          "host": ["{{origin}}buzzs"],
+          "path": [":id", "comments"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "6237bd6522555c2307ff8431"
             }
           ]
         }
@@ -136,7 +155,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"username\": \"Laura0\",\n    \"password\": \"Laura1234\"\n}",
+          "raw": "{\n    \"username\": \"Guillem0\",\n    \"password\": \"Guillem1234\"\n}",
           "options": {
             "raw": {
               "language": "json"
