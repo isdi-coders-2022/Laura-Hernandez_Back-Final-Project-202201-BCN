@@ -15,6 +15,7 @@ const router = express.Router();
 
 router.get("/", getAllBuzzs);
 router.get("/:id", detailBuzz);
+router.get("/:id/comments", commentsBuzz);
 router.delete("/:id", auth, deleteBuzz);
 router.patch("/:id/like", auth, incrementLikes);
 router.post("/new", auth, validate(validationBuzzJoi), addBuzz);
