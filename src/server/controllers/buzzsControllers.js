@@ -3,7 +3,7 @@ const debug = require("debug")("skybuzz:server:buzzsControllers");
 const chalk = require("chalk");
 const Buzz = require("../../db/models/Buzz");
 const { notFoundError } = require("../../middlewares/errors");
-const { default: getAuthor } = require("../../utils/getAuthor");
+const getAuthor = require("../../utils/getAuthor");
 
 const getAllBuzzs = async (req, res) => {
   const buzzs = await Buzz.find()
