@@ -130,25 +130,6 @@
       "response": []
     },
     {
-      "name": "Detail Buzz Comments",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{origin}}buzzs/:id/comments",
-          "host": ["{{origin}}buzzs"],
-          "path": [":id", "comments"],
-          "variable": [
-            {
-              "key": "id",
-              "value": "6237bd6522555c2307ff8431"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
       "name": "Login",
       "request": {
         "method": "POST",
