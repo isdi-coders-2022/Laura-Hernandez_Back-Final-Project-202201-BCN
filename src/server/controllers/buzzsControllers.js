@@ -34,7 +34,6 @@ const deleteBuzz = async (req, res, next) => {
 const getAuthor = (headerAuth) => {
   const userToken = headerAuth.replace("Bearer ", "");
   const payload = jwt.decode(userToken, process.env.JWT_SECRET);
-  debug(payload);
   return payload.id;
 };
 
