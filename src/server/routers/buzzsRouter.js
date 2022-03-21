@@ -8,6 +8,7 @@ const {
   deleteBuzz,
   addBuzz,
   detailBuzz,
+  commentsBuzz,
 } = require("../controllers/buzzsControllers");
 const validationBuzzJoi = require("../controllers/buzzValidation/buzzValidator");
 

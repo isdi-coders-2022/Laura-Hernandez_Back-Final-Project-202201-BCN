@@ -74,4 +74,21 @@ const detailBuzz = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllBuzzs, deleteBuzz, addBuzz, detailBuzz };
+const commentsBuzz = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const buzz = await Buzz.findById(id).populate("comments", "id");
+    if (buzz.comments) {
+      const buzzComment1 = await Buzz.findById(buzz.comments[0].id);
+      debug(chalk.greenBright("Buzz details comments ok"));
+      res.json({ buzzComment1 });
+    } else {
+      debug(chalk.red("Buzz not found or without commennts"));
+      next(notFoundError);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { getAllBuzzs, deleteBuzz, addBuzz, detailBuzz, commentsBuzz };
