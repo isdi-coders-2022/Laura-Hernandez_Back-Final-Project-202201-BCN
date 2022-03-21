@@ -7,7 +7,8 @@ const getAuthor = require("../../utils/getAuthor");
 
 const getAllBuzzs = async (req, res) => {
   const buzzs = await Buzz.find()
-    .populate("comments", "id text author.name")
+    .populate("comments", "id topic likes date text author")
+    .populate({ path: "comments", select: "author" })
     .populate("author", "name username")
     .sort({ date: -1 });
   res.json({ buzzs });
@@ -79,9 +80,13 @@ const commentsBuzz = async (req, res, next) => {
   try {
     const buzz = await Buzz.findById(id).populate("comments", "id");
     if (buzz.comments) {
-      const buzzComment1 = await Buzz.findById(buzz.comments[0].id);
-      debug(chalk.greenBright("Buzz details comments ok"));
-      res.json({ buzzComment1 });
+      const commentsResponsesArray = [];
+      buzz.comments.forEach(async (comment) => {
+        const commentResponse = await Buzz.findById(comment.id);
+        commentsResponsesArray.push(commentResponse);
+        debug(commentsResponsesArray);
+      });
+      res.json(commentsResponsesArray);
     } else {
       debug(chalk.red("Buzz not found or without commennts"));
       next(notFoundError);
