@@ -19,6 +19,29 @@
       "response": []
     },
     {
+      "name": "Get All Users",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGF1cmEiLCJpZCI6IjYyMzI0NWRlY2FhN2Q2OWY5NmYxMGE5NSIsImlhdCI6MTY0Nzk2NzEwNiwiZXhwIjoxNjQ4NTcxOTA2fQ.6U8O9fTBI99BKEKjl4lUJL2ycocbyIsZAR9-2uxU2zM",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{origin}}users/all",
+          "host": ["{{origin}}users"],
+          "path": ["all"]
+        }
+      },
+      "response": []
+    },
+    {
       "name": "Delete a Buzz",
       "request": {
         "auth": {
