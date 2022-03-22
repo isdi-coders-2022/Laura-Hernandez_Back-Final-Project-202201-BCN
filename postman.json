@@ -198,8 +198,8 @@
           }
         },
         "url": {
-          "raw": "{{local}}buzzs/:id/comment",
-          "host": ["{{local}}buzzs"],
+          "raw": "{{origin}}buzzs/:id/comment",
+          "host": ["{{origin}}buzzs"],
           "path": [":id", "comment"],
           "variable": [
             {
