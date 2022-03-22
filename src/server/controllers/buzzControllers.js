@@ -37,7 +37,6 @@ const addComment = async (req, res, next) => {
         topic,
         isComment: true,
       });
-      debug(createdComment);
       buzz.comments.push(createdComment.id);
       await buzz.save();
       res.json({ buzz });
