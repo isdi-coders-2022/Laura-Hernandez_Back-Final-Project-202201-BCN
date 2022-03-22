@@ -70,8 +70,12 @@ const detailBuzz = async (req, res, next) => {
   const { id } = req.params;
   try {
     const buzz = await Buzz.findById(id)
-      .populate("comments", "id text author")
-      .populate("author", "name username");
+      .populate("author", "name username")
+      .populate({
+        path: "comments",
+        select: "author id topic likes date text",
+        populate: { path: "author", select: "name username" },
+      });
     if (buzz) {
       debug(chalk.greenBright("Buzz details ok"));
       res.json({ buzz });
