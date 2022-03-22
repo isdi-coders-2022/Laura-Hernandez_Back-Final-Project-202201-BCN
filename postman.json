@@ -122,7 +122,7 @@
           "variable": [
             {
               "key": "id",
-              "value": "6237bd6522555c2307ff8431"
+              "value": "62390ca3815f7c4c0b411f68"
             }
           ]
         }
@@ -169,6 +169,44 @@
           "raw": "{{origin}}users/register",
           "host": ["{{origin}}users"],
           "path": ["register"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AddComment",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiR3VpbGxlbSIsImlkIjoiNjIzNjEzOTdhZTEwNmZkMDRhZGQyZDUyIiwiaWF0IjoxNjQ3OTQwMzkwLCJleHAiOjE2NDg1NDUxOTB9.UP6aTFxKbCy-54QgaV1wcF-qNU-9YWkkgmZWxetWNDA",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"topic\": \"general\",\n    \"text\": \"así que el jueves a presumir de código, vale?\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{local}}buzzs/:id/comment",
+          "host": ["{{local}}buzzs"],
+          "path": [":id", "comment"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "62390ca3815f7c4c0b411f68"
+            }
+          ]
         }
       },
       "response": []
