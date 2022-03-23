@@ -37,9 +37,12 @@ const addComment = async (req, res, next) => {
         topic,
         isComment: true,
       });
-      buzz.comments.push(createdComment.id);
+      buzz.comments.push(createdComment);
       await buzz.save();
-      res.json({ buzz });
+      const buzzComment = await Buzz.findById(
+        buzz.comments[buzz.comments.length - 1]
+      ).populate("author", "name username");
+      res.json({ buzzComment });
     } else {
       const error = new Error("Buzz not found");
       error.code = 404;
