@@ -177,3 +177,16 @@ describe("Given a /buzzs/:id/like endpoint", () => {
     });
   });
 });
+
+describe("Given a /buzzs/:id endpoint", () => {
+  describe("When it receives a GET request with a nonexistent id", () => {
+    test("Then it should respond with a 404 status code", async () => {
+      const noId = "622f3ee1fdb8a63d5055a402";
+
+      await request(app)
+        .get(`/buzzs/${noId}`)
+        .set("Authorization", `Bearer ${userToken}`)
+        .expect(500);
+    });
+  });
+});
