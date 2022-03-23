@@ -151,3 +151,16 @@ describe("Given a /buzzs/:id/comment endpoint", () => {
     });
   });
 });
+
+describe("Given a /users/all endpoint", () => {
+  describe("When it receives a GET request with the ", () => {
+    test("Then it should respond with a 200 status code", async () => {
+      const { body } = await request(app)
+        .get("/users/all")
+        .set("Authorization", `Bearer ${userToken}`)
+        .expect(200);
+
+      expect(body).toHaveProperty("users");
+    });
+  });
+});
