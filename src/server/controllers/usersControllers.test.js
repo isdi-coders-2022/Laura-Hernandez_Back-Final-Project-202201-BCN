@@ -90,7 +90,7 @@ describe("Given an loginUser controller", () => {
   });
 });
 
-describe("Given an registerUser controller", () => {
+describe("Given an controller", () => {
   describe("When it receives a request with a new username", () => {
     test("Then it should call method json and respond with a 201 status", async () => {
       const req = {
