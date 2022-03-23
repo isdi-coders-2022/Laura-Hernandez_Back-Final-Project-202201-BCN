@@ -1,5 +1,6 @@
+const jwt = require("jsonwebtoken");
 const Buzz = require("../../db/models/Buzz");
-const { incrementLikes } = require("./buzzControllers");
+const { incrementLikes, addComment } = require("./buzzControllers");
 
 describe("Given an incrementLike controller", () => {
   beforeEach(() => {
@@ -68,6 +69,97 @@ describe("Given an incrementLike controller", () => {
       await incrementLikes(req, res, next);
 
       expect(Buzz.updateOne).toHaveBeenCalled();
+    });
+  });
+});
+
+describe("Given an addComment controller", () => {
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
+  describe("When it receives an existing id to add a comment to", () => {
+    test("Then it should call method json with updated buzz", async () => {
+      const mockRequest = () => {
+        const request = {};
+        request.params = jest.fn().mockReturnValue({
+          id: "12345",
+        });
+        request.body = jest
+          .fn()
+          .mockReturnValue({ text: "Test buzz comment", topic: "general" });
+        request.header = jest.fn().mockReturnValue("Bearer token");
+        return request;
+      };
+      const res = {
+        json: jest.fn(),
+      };
+      const next = jest.fn();
+      const buzz = {
+        comments: [],
+        save: jest.fn(),
+      };
+
+      const author = { id: "623245decaa7d69f96f10a95" };
+      const addedComment = { id: "623245decaa7d69f96f10a66" };
+      Buzz.findById = jest.fn().mockResolvedValue(buzz);
+      jwt.decode = jest.fn().mockResolvedValue(author);
+      Buzz.create = jest.fn().mockResolvedValue(addedComment);
+
+      await addComment(mockRequest(), res, next);
+
+      expect(Buzz.findById).toHaveBeenCalled();
+      expect(Buzz.create).toHaveBeenCalled();
+      expect(res.json).toHaveBeenCalledWith({ buzz });
+    });
+  });
+
+  describe("When it receives an non existing id to add a comment to", () => {
+    test("Then it should return a 404", async () => {
+      const mockRequest = () => {
+        const request = {};
+        request.params = jest.fn().mockReturnValue({
+          id: "12345",
+        });
+        return request;
+      };
+      const res = {
+        json: jest.fn(),
+      };
+      const next = jest.fn();
+
+      Buzz.findById = jest.fn().mockResolvedValue(null);
+      await addComment(mockRequest(), res, next);
+
+      const error = new Error("Buzz not found");
+      error.code = 404;
+
+      expect(Buzz.findById).toHaveBeenCalled();
+      expect(next).toHaveBeenCalledWith(error);
+    });
+  });
+
+  describe("When it receives an incorrect id to add a comment to", () => {
+    test("Then it should return a 400", async () => {
+      const mockRequest = () => {
+        const request = {};
+        request.params = jest.fn().mockReturnValue({
+          id: "12345",
+        });
+        return request;
+      };
+      const res = {
+        json: jest.fn(),
+      };
+      const next = jest.fn();
+
+      const invalidIdError = new Error("Invalid id");
+      invalidIdError.code = 400;
+
+      Buzz.findById = jest.fn().mockRejectedValue(invalidIdError);
+      await addComment(mockRequest(), res, next);
+
+      expect(Buzz.findById).toHaveBeenCalled();
+      expect(next).toHaveBeenCalledWith(invalidIdError);
     });
   });
 });
