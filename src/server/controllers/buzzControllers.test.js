@@ -94,21 +94,26 @@ describe("Given an addComment controller", () => {
         json: jest.fn(),
       };
       const next = jest.fn();
-      const buzz = {
+      const buzzComment = {
         comments: [],
         save: jest.fn(),
       };
-
       const author = { id: "623245decaa7d69f96f10a95" };
       const addedComment = { id: "623245decaa7d69f96f10a66" };
-      Buzz.findById = jest.fn().mockResolvedValue(buzz);
+
+      Buzz.findById = jest
+        .fn()
+        .mockResolvedValueOnce(buzzComment)
+        .mockReturnThis();
       jwt.decode = jest.fn().mockResolvedValue(author);
       Buzz.create = jest.fn().mockResolvedValue(addedComment);
+      Buzz.populate = jest.fn().mockResolvedValue(buzzComment);
 
       await addComment(mockRequest(), res, next);
 
       expect(Buzz.findById).toHaveBeenCalled();
       expect(Buzz.create).toHaveBeenCalled();
+      expect(res.json).toHaveBeenCalledWith({ buzzComment });
     });
   });
 

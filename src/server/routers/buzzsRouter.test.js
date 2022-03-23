@@ -133,3 +133,60 @@ describe("Given a /buzzs/new endpoint", () => {
     });
   });
 });
+
+describe("Given a /buzzs/:id/comment endpoint", () => {
+  describe("When it receives a PUT request with the buzz data comment", () => {
+    test("Then it should respond with a 200 status code", async () => {
+      const dataBuzzComment = {
+        topic: "Pulp Fiction",
+        text: "That's thirty minutes away. I'll be there in ten.",
+      };
+      const { body } = await request(app).get("/buzzs/").expect(200);
+
+      await request(app)
+        .put(`/buzzs/${body.buzzs[0].id}/comment `)
+        .set("Authorization", `Bearer ${userToken}`)
+        .send(dataBuzzComment)
+        .expect(200);
+    });
+  });
+});
+
+describe("Given a /users/all endpoint", () => {
+  describe("When it receives a GET request with the ", () => {
+    test("Then it should respond with a 200 status code", async () => {
+      const { body } = await request(app)
+        .get("/users/all")
+        .set("Authorization", `Bearer ${userToken}`)
+        .expect(200);
+
+      expect(body).toHaveProperty("users");
+    });
+  });
+});
+
+describe("Given a /buzzs/:id/like endpoint", () => {
+  describe("When it receives a PATCH request an id as params", () => {
+    test("Then it should respond with a 200 status code", async () => {
+      const { body } = await request(app).get("/buzzs/").expect(200);
+
+      await request(app)
+        .patch(`/buzzs/${body.buzzs[0].id}/like `)
+        .set("Authorization", `Bearer ${userToken}`)
+        .expect(200);
+    });
+  });
+});
+
+describe("Given a /buzzs/:id endpoint", () => {
+  describe("When it receives a GET request with a nonexistent id", () => {
+    test("Then it should respond with a 404 status code", async () => {
+      const noId = "622f3ee1fdb8a63d5055a402";
+
+      await request(app)
+        .get(`/buzzs/${noId}`)
+        .set("Authorization", `Bearer ${userToken}`)
+        .expect(500);
+    });
+  });
+});
