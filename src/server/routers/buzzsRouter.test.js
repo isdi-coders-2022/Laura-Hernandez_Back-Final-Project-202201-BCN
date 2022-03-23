@@ -164,3 +164,16 @@ describe("Given a /users/all endpoint", () => {
     });
   });
 });
+
+describe("Given a /buzzs/:id/like endpoint", () => {
+  describe("When it receives a PATCH request an id as params", () => {
+    test("Then it should respond with a 200 status code", async () => {
+      const { body } = await request(app).get("/buzzs/").expect(200);
+
+      await request(app)
+        .patch(`/buzzs/${body.buzzs[0].id}/like `)
+        .set("Authorization", `Bearer ${userToken}`)
+        .expect(200);
+    });
+  });
+});
