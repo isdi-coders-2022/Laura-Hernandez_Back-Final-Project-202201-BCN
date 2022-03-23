@@ -2,7 +2,7 @@ require("dotenv").config();
 const chalk = require("chalk");
 const jwt = require("jsonwebtoken");
 const User = require("../../db/models/User");
-const { loginUser, registerUser } = require("./usersControllers");
+const { loginUser, registerUser, getAllUsers } = require("./usersControllers");
 
 jest.mock("../../db/models/User");
 
@@ -141,6 +141,35 @@ describe("Given a Register controller", () => {
       await registerUser(req, res, next);
 
       expect(next).toHaveBeenCalledWith(errorWPW);
+    });
+  });
+});
+
+describe("Given an getAllUsers controller", () => {
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
+  describe("When it is called", () => {
+    test("Then it should return all users", async () => {
+      const res = {
+        json: jest.fn(),
+      };
+
+      const users = [
+        {
+          name: "Leia Organa",
+          username: "leia",
+          password: "password",
+          buzzs: [],
+        },
+      ];
+
+      User.find = jest.fn().mockResolvedValue(users);
+
+      await getAllUsers(null, res);
+
+      expect(User.find).toHaveBeenCalled();
+      expect(res.json).toHaveBeenCalledWith({ users });
     });
   });
 });
