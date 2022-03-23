@@ -69,14 +69,13 @@ const addBuzz = async (req, res, next) => {
 const detailBuzz = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const buzz = await Buzz.findById(id)
-      .populate("author", "name username")
-      .populate({
+    const buzz = await Buzz.findById(id);
+    if (buzz) {
+      buzz.populate("author", "name username").populate({
         path: "comments",
         select: "author id topic likes date text",
         populate: { path: "author", select: "name username" },
       });
-    if (buzz) {
       debug(chalk.greenBright("Buzz details ok"));
       res.json({ buzz });
     } else {

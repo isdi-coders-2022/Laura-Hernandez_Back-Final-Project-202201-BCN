@@ -90,7 +90,7 @@ describe("Given an loginUser controller", () => {
   });
 });
 
-describe("Given an registerUser controller", () => {
+describe("Given an controller", () => {
   describe("When it receives a request with a new username", () => {
     test("Then it should call method json and respond with a 201 status", async () => {
       const req = {
@@ -118,8 +118,6 @@ describe("Given an registerUser controller", () => {
 
   describe("When it receives a request with a username that already exists", () => {
     test("Then it should call next method with a 400 status", async () => {
-      // FIXME , CAMBIAR CONTENIDO DE TEST CUANDO USUARIO EXISTE
-
       const req = {
         body: { name: "Rosa", username: "Rosa0", password: "Rosa1234" },
       };
@@ -135,17 +133,14 @@ describe("Given an registerUser controller", () => {
           "$2b$10$ZZ7dKrL4q2zWFAN8CnCWEOnWPQKQAfjbqvg8yMHnaw4DUXxUQSvae",
       };
       const errorWPW = new Error(
-        chalk.redBright(`Something went wrong or username already exists`)
+        chalk.redBright(`Something went wrong or username Rosa0 already exists`)
       );
       errorWPW.code = 400;
 
-      User.findOne = jest.fn().mockResolvedValue(false);
-      User.create = jest.fn().mockResolvedValue(user);
-
+      User.findOne = jest.fn().mockResolvedValue(user);
       await registerUser(req, res, next);
 
-      expect(res.status).toHaveBeenCalledWith(201);
-      // expect(next).toHaveBeenCalledWith(errorWPW);
+      expect(next).toHaveBeenCalledWith(errorWPW);
     });
   });
 });

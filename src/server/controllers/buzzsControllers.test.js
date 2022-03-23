@@ -1,4 +1,5 @@
 const Buzz = require("../../db/models/Buzz");
+const { notFoundError } = require("../../middlewares/errors");
 const { getAllBuzzs, addBuzz, detailBuzz } = require("./buzzsControllers");
 
 describe("Given an getAllBuzzs controller", () => {
@@ -105,14 +106,15 @@ describe("Given an detailBuzz controller", () => {
           id: "622e7cefb07",
         },
       };
-
+      const res = {
+        json: jest.fn(),
+      };
       const next = jest.fn();
 
-      await detailBuzz(req, null, next);
-      Buzz.findById = jest.fn().mockReturnThis();
-      Buzz.populate = jest.fn().mockReturnThis();
+      await detailBuzz(req, res, next);
+      Buzz.findById = jest.fn().mockResolvedValueOnce(null);
 
-      expect(next).toHaveBeenCalled();
+      expect(next).toHaveBeenCalledWith(notFoundError);
     });
   });
 });
