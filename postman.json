@@ -49,7 +49,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGF1cmEiLCJpZCI6IjYyMzI0NWRlY2FhN2Q2OWY5NmYxMGE5NSIsImlhdCI6MTY0NzU0NjczNywiZXhwIjoxNjQ4MTUxNTM3fQ.aF4jBmqfTe6wrAPblG1MQCFtTkyzDMivc86Uk39w6oU",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiR3VpbGxlbSIsImlkIjoiNjIzNjEzOTdhZTEwNmZkMDRhZGQyZDUyIiwiaWF0IjoxNjQ3OTQwMzkwLCJleHAiOjE2NDg1NDUxOTB9.UP6aTFxKbCy-54QgaV1wcF-qNU-9YWkkgmZWxetWNDA",
               "type": "string"
             }
           ]
@@ -63,7 +63,7 @@
           "variable": [
             {
               "key": "id",
-              "value": "62383ef3ffdb3f7f69cdb82d"
+              "value": "623ae7ce2c2779aaa8df6b38"
             }
           ]
         }
@@ -213,7 +213,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"topic\": \"general\",\n    \"text\": \"así que el jueves a presumir de código, vale?\"\n}",
+          "raw": "{\n    \"topic\": \"general\",\n    \"text\": \"pero a ver, muchachada . display: none existe y tiene sus casos de uso\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -227,7 +227,7 @@
           "variable": [
             {
               "key": "id",
-              "value": "62390ca3815f7c4c0b411f68"
+              "value": "623a1b6c25fb49749da9daec"
             }
           ]
         }
