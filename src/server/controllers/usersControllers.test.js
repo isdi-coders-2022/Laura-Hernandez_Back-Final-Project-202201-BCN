@@ -150,7 +150,7 @@ describe("Given an getAllUsers controller", () => {
     jest.resetAllMocks();
   });
   describe("When it is called", () => {
-    test("Then it should return all users", async () => {
+    test("Then it should return an array with all users", async () => {
       const res = {
         json: jest.fn(),
       };
