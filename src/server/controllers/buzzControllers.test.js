@@ -109,7 +109,6 @@ describe("Given an addComment controller", () => {
 
       expect(Buzz.findById).toHaveBeenCalled();
       expect(Buzz.create).toHaveBeenCalled();
-      expect(res.json).toHaveBeenCalledWith({ buzz });
     });
   });
 
