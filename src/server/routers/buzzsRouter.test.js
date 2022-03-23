@@ -133,3 +133,21 @@ describe("Given a /buzzs/new endpoint", () => {
     });
   });
 });
+
+describe("Given a /buzzs/:id/comment endpoint", () => {
+  describe("When it receives a PUT request with the buzz data comment", () => {
+    test("Then it should respond with a 200 status code", async () => {
+      const dataBuzzComment = {
+        topic: "Pulp Fiction",
+        text: "That's thirty minutes away. I'll be there in ten.",
+      };
+      const { body } = await request(app).get("/buzzs/").expect(200);
+
+      await request(app)
+        .put(`/buzzs/${body.buzzs[0].id}/comment `)
+        .set("Authorization", `Bearer ${userToken}`)
+        .send(dataBuzzComment)
+        .expect(200);
+    });
+  });
+});
