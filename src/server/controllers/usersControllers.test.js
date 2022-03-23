@@ -10,7 +10,7 @@ beforeEach(() => {
   jest.resetAllMocks();
 });
 
-describe("Given an loginUser controller", () => {
+describe("Given a loginUser controller", () => {
   describe("When it receives a request with username Rosa0 and the correct password, and the user exists in db ", () => {
     test("Then it should call method json with the user's token in the receive response", async () => {
       const req = {
@@ -90,7 +90,7 @@ describe("Given an loginUser controller", () => {
   });
 });
 
-describe("Given an controller", () => {
+describe("Given a Register controller", () => {
   describe("When it receives a request with a new username", () => {
     test("Then it should call method json and respond with a 201 status", async () => {
       const req = {
