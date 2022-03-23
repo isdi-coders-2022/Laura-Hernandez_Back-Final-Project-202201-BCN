@@ -84,6 +84,7 @@ const detailBuzz = async (req, res, next) => {
       next(notFoundError);
     }
   } catch (error) {
+    error.code = 404;
     next(error);
   }
 };
