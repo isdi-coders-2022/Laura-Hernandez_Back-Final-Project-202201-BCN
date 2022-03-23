@@ -6,19 +6,15 @@ const auth = async (req, res, next) => {
 
   if (!headerAuth) {
     const error = new Error("Token is missing");
-    res.status(401);
+    res.code = 401;
     next(error);
   } else {
     const userToken = headerAuth.replace("Bearer ", "");
     try {
-      if (!jwt.verify(userToken, process.env.JWT_SECRET)) {
-        const error = new Error("Unable to verify");
-        res.status(401);
-        next(error);
-      } else {
-        next();
-      }
+      jwt.verify(userToken, process.env.JWT_SECRET);
+      next();
     } catch (error) {
+      res.code = 401;
       next(error);
     }
   }
