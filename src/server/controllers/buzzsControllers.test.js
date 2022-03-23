@@ -105,12 +105,16 @@ describe("Given an detailBuzz controller", () => {
           id: "622e7cefb07",
         },
       };
-
+      const res = {
+        json: jest.fn(),
+      };
       const next = jest.fn();
 
-      await detailBuzz(req, null, next);
+      await detailBuzz(req, res, next);
       Buzz.findById = jest.fn().mockReturnThis();
-      Buzz.populate = jest.fn().mockReturnThis();
+      Buzz.populate = jest.fn().mockReturnValue({
+        populate: jest.fn().mockResolvedValueOnce(null),
+      });
 
       expect(next).toHaveBeenCalled();
     });
