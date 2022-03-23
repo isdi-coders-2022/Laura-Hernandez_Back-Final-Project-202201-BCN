@@ -96,6 +96,25 @@ describe("Given a /buzzs/:id endpoint", () => {
         .expect(404);
     });
   });
+
+  describe("When it receives a DELETE request with an invalid token", () => {
+    test("Then it should respond with a 401 status code", async () => {
+      const noId = "622f3ee1fdb8a63d5055a402";
+
+      await request(app)
+        .delete(`/buzzs/${noId}`)
+        .set("Authorization", `Bearer invalidtoken`)
+        .expect(401);
+    });
+  });
+
+  describe("When it receives a DELETE request without token", () => {
+    test("Then it should respond with a 401 status code", async () => {
+      const noId = "622f3ee1fdb8a63d5055a402";
+
+      await request(app).delete(`/buzzs/${noId}`).expect(401);
+    });
+  });
 });
 
 describe("Given a /buzzs/new endpoint", () => {

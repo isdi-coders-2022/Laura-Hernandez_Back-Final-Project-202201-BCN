@@ -6,7 +6,7 @@ const auth = async (req, res, next) => {
 
   if (!headerAuth) {
     const error = new Error("Token is missing");
-    res.code = 401;
+    error.code = 401;
     next(error);
   } else {
     const userToken = headerAuth.replace("Bearer ", "");
@@ -14,7 +14,7 @@ const auth = async (req, res, next) => {
       jwt.verify(userToken, process.env.JWT_SECRET);
       next();
     } catch (error) {
-      res.code = 401;
+      error.code = 401;
       next(error);
     }
   }
