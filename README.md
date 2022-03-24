@@ -5,7 +5,7 @@ You can read the timeline with the most recent buzzs.
 You need to be logged in to publish your own buzzs, or comment anothers.
 You can also check the list of the users (buzzers), always when you're logged in.
 
-This project was developed by [https://github.com/LauraHEVA](Laura Hernández), as a Final Project of ISDI Coders Programming Bootcamp.
+This project was developed by [Laura Hernández](https://github.com/LauraHEVA), as a Final Project of ISDI Coders Programming Bootcamp.
 
 ## Teck Stack
 
