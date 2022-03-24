@@ -10,17 +10,17 @@ This project was developed by [https://github.com/LauraHEVA](Laura Hernández), 
 ## Teck Stack
 
 `Frontend` : React | Typescript | Redux | Styled-components | Jest | Cypress
-`Backend` : NodeJS | ExpressJS | MongoDB | Mongoose | JWT | Jest
+`Backend` : NodeJS | ExpressJS | MongoDB | Mongoose | JWT | Jest | Joi
 `Other` : Figma | Postman | Husky | SonarQube | Trello (Agile methodology board)
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run start-dev`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Runs the server and database in the development mode.
+Open [http://localhost:4005](http://localhost:4005) to view it in the browser or Postman.
 
 ### `npm test`
 
@@ -29,7 +29,3 @@ Launches the test runner in the interactive watch mode.\
 ### `npm run test-coverage`
 
 Launches the test runner with the coverage information.
-
-### `npm run cypress:open`
-
-Launches the cypress test into the browser.
